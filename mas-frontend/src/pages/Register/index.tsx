@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {Button} from '../../components/Button';
 import {useForm} from 'react-hook-form'
 import {Container,Content,FormContainer, InputContainer,Background,Error} from './styles';
+import api from '../../services/api';
 
 
 
@@ -16,7 +17,7 @@ export function Register(){
 
     const {register,handleSubmit, formState: {errors}} = useForm<FormData>();
 
-    const onSubmit = handleSubmit(data=> alert(JSON.stringify(data)))
+    const onSubmit = handleSubmit(data=> api.post('/user', data).then(response=> alert(response.data)))
 
     return(
        <Container>
