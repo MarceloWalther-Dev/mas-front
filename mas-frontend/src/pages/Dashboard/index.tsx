@@ -1,55 +1,52 @@
-import {useState} from "react";
+import { useState } from 'react';
 import { Header } from "../../components/Header";
-import {ActivyTable} from "../../components/ActivyTable";
-import {Summary} from "../../components/Summary";
-import {NewActivyModal} from "../../components/NewActivyModal";
-import {NewCourseUnitModal} from "../../components/NewCourseUnitModal";
+import { ActivyTable } from '../../components/ActivyTable';
+import { Summary } from '../../components/Summary';
+import {NewActivyModal} from '../../components/NewActivyModal';
+import {NewCourseUnitModal} from '../../components/NewCourseUnitModal';
 
-import {Container} from "./styles";
+import {Container} from './styles'
 
+export function Dashboard() {
 
+    const [isNewActivyModalOpen, setIsNewActivyModalOpen] = useState(false)
+    const [isNewCourseUnitModalOpen, setIsNewCourseUnitModalOpen] = useState(false)
 
-export function Dashboard(){
-
-    const [isNewActivyModalOpen, setIsNewActivyModalOpen] = useState(false);
-    const [isNewCourseUnitModalOpen, setIsNewCourseUnitModalOpen] = useState(false);
 
     function handleOpenActivyModal(){
-        setIsNewActivyModalOpen(true)
-    }
-
-    function handleOpenCourseUnitModal(){
-        setIsNewCourseUnitModalOpen(true)
+        setIsNewActivyModalOpen(true);
     }
 
     function handleCloseActivyModal(){
-        setIsNewActivyModalOpen(false)
+        setIsNewActivyModalOpen(false);
+    }
+
+    function handleOpenCourseUnitModal(){
+        setIsNewCourseUnitModalOpen(true);
     }
 
     function handleCloseCourseUnitModal(){
-        setIsNewCourseUnitModalOpen(false)
+        setIsNewCourseUnitModalOpen(false);
     }
 
 
-    return(
+    return (
         <>
-            <Header
-                onOpenNewActivyModal={handleOpenActivyModal}
+            <Header 
+                onOpenNewActivyModal={handleOpenActivyModal} 
                 onOpenNewCourseUnitModal={handleOpenCourseUnitModal}
             />
             <Container>
-                <Summary/>
-                <ActivyTable/>
+                <Summary />
+                <ActivyTable />
             </Container>
-            <NewActivyModal
+            <NewActivyModal 
                 isOpen={isNewActivyModalOpen}
-                onRequestClose={handleCloseActivyModal}            
+                onRequestClose={handleCloseActivyModal}
             />
-
-            <NewCourseUnitModal
-                isOpen={false}
+            <NewCourseUnitModal 
+                isOpen={isNewCourseUnitModalOpen}
                 onRequestClose={handleCloseCourseUnitModal}
-            
             />
         </>
     )
